@@ -13,9 +13,9 @@ public class UserDaoService {
     private static int usersCount = 0;
 
     private static final List<User> USERS = new ArrayList<>(List.of(
-            new User(++usersCount, "Adam", LocalDate.now().minusYears(30)),
-            new User(++usersCount, "Eve", LocalDate.now().minusYears(25)),
-            new User(++usersCount, "Jim", LocalDate.now().minusYears(20))));
+            new User(++usersCount, "Adam", LocalDate.now().minusYears(30), null),
+            new User(++usersCount, "Eve", LocalDate.now().minusYears(25), null),
+            new User(++usersCount, "Jim", LocalDate.now().minusYears(20), null)));
 
     public List<User> findAll() {
         return USERS;

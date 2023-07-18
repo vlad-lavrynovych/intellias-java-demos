@@ -1,6 +1,7 @@
 package com.demo.rest.webservices.restfulwebservices.exception;
 
 import com.demo.rest.webservices.restfulwebservices.user.UserNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,14 @@ public class CustomizedResponseEntityExceptionHandler {
     public final ResponseEntity<ErrorDetails> handleUserNotFoundException(WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),
                 "User not found", request.getDescription(false));
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public final ResponseEntity<ErrorDetails> handleEntityNotFoundException(WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),
+                "Entity not found", request.getDescription(false));
 
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
